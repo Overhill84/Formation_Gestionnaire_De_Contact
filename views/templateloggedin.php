@@ -14,9 +14,13 @@
             <li><a href='index.php?route=contact_index&ordre=creation'>Tous les contacts par date</a></li>
             <li><a href='index.php?route=contact_insert'>Ajouter un contact</a></li>
             <li><a href='index.php?route=categorie_insert'>Ajouter une catégorie</a></li>
-            <?php if($_SESSION['user']['type'] == "admin") { ?>
-                <li><a href='index.php?route=user_manage'>Gérer les utilisateurs</a></li>
+            <?php 
+                $user = new \Models\Utilisateur(\Models\Utilisateurcourant::getInstance());
+                if($user->verify_admin($_SESSION['user']['idUtilisateur'])) { ?>
+                    <li><a href='index.php?route=user_manage'>Gérer les utilisateurs</a></li>
             <?php } ?>
+            
+            
         </ul>
     </nav>
     <?php    
